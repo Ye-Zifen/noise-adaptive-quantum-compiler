@@ -1,0 +1,56 @@
+{
+  "track": "track_a",
+  "split": "public",
+  "backend_snapshot_id": "medium_snapshot_a",
+  "backend_size_class": "medium",
+  "benchmarks": [
+    {
+      "name": "track_a_001",
+      "family": "bv",
+      "backend_snapshot_id": "medium_snapshot_a",
+      "backend_size_class": "medium"
+    },
+    {
+      "name": "track_a_002",
+      "family": "hs",
+      "backend_snapshot_id": "medium_snapshot_a",
+      "backend_size_class": "medium"
+    },
+    {
+      "name": "track_a_003",
+      "family": "toffoli",
+      "backend_snapshot_id": "medium_snapshot_a",
+      "backend_size_class": "medium"
+    },
+    {
+      "name": "track_a_004",
+      "family": "fredkin",
+      "backend_snapshot_id": "medium_snapshot_a",
+      "backend_size_class": "medium"
+    },
+    {
+      "name": "track_a_005",
+      "family": "peres",
+      "backend_snapshot_id": "medium_snapshot_a",
+      "backend_size_class": "medium"
+    },
+    {
+      "name": "track_a_006",
+      "family": "or",
+      "backend_snapshot_id": "medium_snapshot_a",
+      "backend_size_class": "medium"
+    },
+    {
+      "name": "track_a_007",
+      "family": "adder",
+      "backend_snapshot_id": "medium_snapshot_a",
+      "backend_size_class": "medium"
+    },
+    {
+      "name": "track_a_008",
+      "family": "structured_random",
+      "backend_snapshot_id": "medium_snapshot_a",
+      "backend_size_class": "medium"
+    }
+  ]
+}

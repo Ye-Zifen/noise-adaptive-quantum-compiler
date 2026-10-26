@@ -1,0 +1,59 @@
+{
+  "stages": [
+    {
+      "stage": "RouteCQC baseline",
+      "trackA": 0.758,
+      "trackB": 0.406,
+      "final": 0.67
+    },
+    {
+      "stage": "+ 多候选 layout + 可靠性选择",
+      "trackA": 0.845,
+      "trackB": 0.443,
+      "final": 0.745
+    },
+    {
+      "stage": "+ 拓扑感知线性合成 (GHZ)",
+      "trackA": 0.845,
+      "trackB": 0.484,
+      "final": 0.755
+    },
+    {
+      "stage": "+ 可靠性加权 SABRE",
+      "trackA": 0.847,
+      "trackB": 0.493,
+      "final": 0.759
+    },
+    {
+      "stage": "+ SABRE 前后向初始映射精化",
+      "trackA": 0.853,
+      "trackB": 0.52,
+      "final": 0.769
+    },
+    {
+      "stage": "+ 束搜索/PermRowCol/加权合成 + 死区",
+      "trackA": 0.8545,
+      "trackB": 0.5308,
+      "final": 0.7736
+    },
+    {
+      "stage": "+ mirror融合束搜索 + 轨迹MC选择(A)",
+      "trackA": 0.8647,
+      "trackB": 0.5308,
+      "final": 0.7812
+    },
+    {
+      "stage": "+ 支撑集真实成功率选择 + 辅助比特星形扇出(B)",
+      "trackA": 0.8647,
+      "trackB": 0.5483,
+      "final": 0.7856
+    },
+    {
+      "stage": "+ 扇出搜参 + 大线路beam扩容(精化种子×2度量)",
+      "trackA": 0.8647,
+      "trackB": 0.5693,
+      "final": 0.7909
+    }
+  ],
+  "note": "seed 7 单次；最终稳健 10-seed 均值 final=0.7911（随包代码同环境重测）"
+}

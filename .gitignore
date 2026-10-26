@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+
+# Environments
+.venv/
+venv/
+env/
+
+# Local evaluation outputs at the repository root only.
+# Leading slash is essential: a bare `results/` would also ignore the
+# committed submission/results/ directory.
+/results/
+
+# Private benchmark splits (not distributed)
+benchmarks/*/private/
+datasets/private/
+
+# Editors / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# LaTeX build artifacts from submission/docs/figures/fig_pipeline.tex
+*.aux
+*.log
+*.out
+*.synctex.gz
+*.fls
+*.fdb_latexmk

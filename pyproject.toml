@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "noise-adaptive-hackathon"
+version = "0.1.0"
+description = "Dual-track Cirq/Stim hackathon repo for NISQ compiler mapping."
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+dependencies = [
+  "cirq>=1.5",
+  "networkx>=3.2",
+  "numpy>=1.26",
+  "pydantic>=1.10,<3",
+  "stim>=1.15",
+  "stimcirq>=1.15",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.4",
+]
+
+[project.scripts]
+nah-gen-dataset = "noise_adaptive_hackathon.cli.gen_dataset:main"
+nah-run-baseline = "noise_adaptive_hackathon.cli.run_baseline:main"
+nah-evaluate-submission = "noise_adaptive_hackathon.cli.evaluate_submission:main"
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

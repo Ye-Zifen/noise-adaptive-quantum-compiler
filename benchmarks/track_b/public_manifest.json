@@ -1,0 +1,20 @@
+{
+  "track": "track_b",
+  "split": "public",
+  "backend_snapshot_id": "large_snapshot_a",
+  "backend_size_class": "large",
+  "benchmarks": [
+    {
+      "name": "track_b_001",
+      "family": "ghz",
+      "backend_snapshot_id": "large_snapshot_a",
+      "backend_size_class": "large"
+    },
+    {
+      "name": "track_b_002",
+      "family": "parity",
+      "backend_snapshot_id": "large_snapshot_a",
+      "backend_size_class": "large"
+    }
+  ]
+}

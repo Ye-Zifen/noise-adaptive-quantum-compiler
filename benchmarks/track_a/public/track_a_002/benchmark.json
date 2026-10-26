@@ -1,0 +1,27 @@
+{
+  "track": "track_a",
+  "name": "track_a_002",
+  "family": "hs",
+  "logical_qubits": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "expected_output_rule": {
+    "rule_type": "bitstring",
+    "bitstring": "100110",
+    "allowed_bitstrings": [],
+    "parity_checks": []
+  },
+  "metadata": {
+    "family": "hs",
+    "logical_qubits": 6,
+    "clifford_only": false,
+    "split": "public",
+    "backend_snapshot_id": "medium_snapshot_a",
+    "backend_size_class": "medium"
+  }
+}

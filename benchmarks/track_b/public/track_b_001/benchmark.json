@@ -1,0 +1,41 @@
+{
+  "track": "track_b",
+  "name": "track_b_001",
+  "family": "ghz",
+  "logical_qubits": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "expected_output_rule": {
+    "rule_type": "allowed_bitstrings",
+    "bitstring": null,
+    "allowed_bitstrings": [
+      "0000000000000000",
+      "1111111111111111"
+    ],
+    "parity_checks": []
+  },
+  "metadata": {
+    "family": "ghz",
+    "num_qubits": 16,
+    "depth": 16,
+    "clifford_only": true,
+    "split": "public",
+    "backend_snapshot_id": "large_snapshot_a",
+    "backend_size_class": "large"
+  }
+}

@@ -1,0 +1,74 @@
+% 整体架构图 — xelatex 编译
+% 编译:  xelatex fig_pipeline.tex
+% 转PNG: pdftoppm -png -r 160 fig_pipeline.pdf fig_pipeline
+% 字体:  Linux 用 "Noto Sans CJK SC";Windows 可改为 "Microsoft YaHei" 或 "SimHei"
+\documentclass[tikz,border=8pt]{standalone}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\setCJKmainfont{Noto Sans CJK SC}   % Windows: \setCJKmainfont{Microsoft YaHei}
+\usetikzlibrary{positioning,arrows.meta,fit,calc}
+
+\begin{document}
+\begin{tikzpicture}[
+  font=\small,
+  node distance=3.2mm and 10mm,
+  every node/.style={inner sep=2.5pt},
+  box/.style={draw=black!60, line width=0.7pt, rounded corners=5pt,
+              align=center, minimum height=8.5mm, inner xsep=7pt, inner ysep=4pt},
+  io/.style={box, fill=blue!8},
+  lay/.style={box, fill=green!12},
+  router/.style={box, fill=orange!16, minimum width=78mm},
+  synth/.style={box, fill=violet!12, minimum width=78mm},
+  sel/.style={box, fill=red!10},
+  group/.style={draw=black!45, dashed, rounded corners=7pt, inner sep=5pt},
+  arr/.style={-{Stealth[length=2.8mm]}, line width=0.9pt, black!60}
+]
+
+% ---------- 生成器堆栈 ----------
+\node[router]                (r1) {路由器 A：RouteCQC（兜底）};
+\node[router, below=of r1]   (r2) {路由器 B：可靠性贪心（小线路）};
+\node[router, below=of r2]   (r3) {路由器 C：可靠性 SABRE + 扫参 + 前后向精化};
+\node[router, below=of r3]   (r4) {路由器 D：mirror 融合束搜索（评测指标上近最优）};
+\node[synth,  below=of r4]   (s1) {线性合成：RowCol / PermRowCol（可靠性加权 Steiner）};
+\node[synth,  below=of s1]   (s2) {辅助比特星形扇出（GHZ 族星形映射）};
+\node[group, fit=(r1)(s2),
+      label={[font=\small\bfseries, anchor=south west]north west:候选生成器（每个初始 layout $\times$ 每个生成器）}]
+      (gen) {};
+
+% ---------- layout 候选(生成器上方) ----------
+\node[lay, minimum width=78mm, above=13mm of gen] (layout)
+  {初始 layout 候选：可靠性 / movement / BFS 嵌入 + 随机重启};
+
+% ---------- 输入(左侧) ----------
+\node[io, minimum width=30mm, minimum height=16mm]
+  (input) at ($(gen.west)+(-32mm,14mm)$)
+  {输入\\ \texttt{circuit.json}\\ \texttt{backend.json}};
+
+% ---------- 右列:候选池 → 选择 → 输出 ----------
+\node[io, minimum width=60mm, minimum height=12mm]
+  (pool) at ($(gen.east)+(42mm,16mm)$)
+  {候选池\\ （结构校验 + 去重 + CX 对消窥孔）};
+\node[sel, minimum width=60mm, below=6mm of pool, align=left] (select) {%
+  \textbf{选择：估计真实成功率}\\[1pt]
+  Clifford $\rightarrow$ stim 支撑集成员概率（两遍精估）\\
+  非 Clifford 近平局 $\rightarrow$ Pauli 轨迹蒙特卡洛\\
+  兜底 $\rightarrow$ logrel + 死区（0.005）\\[1pt]
+  不可信候选须通过等价性自检};
+\node[io, minimum width=60mm, minimum height=11mm, below=6mm of select] (output)
+  {输出\\ \texttt{compiled\_circuit.json} + layout sidecar};
+
+% ---------- 标题(顶部居中) ----------
+\path let \p1=(layout.center), \p2=(pool.center) in
+  node[font=\normalsize\bfseries] at ({0.5*(\x1+\x2)}, {\y1+13mm})
+  {整体架构：多候选生成 $\rightarrow$ 真实成功率导向选择（门控 + 自检 $\rightarrow$ 只赚不亏）};
+
+% ---------- 连线 ----------
+\draw[arr] (input.north) to[out=90,in=180]  (layout.west);
+\draw[arr] (input.east)  to[out=0,in=160]   (gen.west |- input);
+\draw[arr] (layout.south) -- (gen.north);
+\draw[arr] (gen.east |- pool) to[out=0,in=180] (pool.west);
+\draw[arr] (pool.south)   -- (select.north);
+\draw[arr] (select.south) -- (output.north);
+
+\end{tikzpicture}
+\end{document}

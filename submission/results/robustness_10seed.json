@@ -1,0 +1,30 @@
+{
+  "description": "10-seed (seed 7..16) mean success_rate; shots_a=256, shots_b=1024",
+  "per_sample_mean": {
+    "track_a_001": 0.9246,
+    "track_a_002": 0.8809,
+    "track_a_003": 0.9008,
+    "track_a_004": 0.8855,
+    "track_a_005": 0.8969,
+    "track_a_006": 0.8984,
+    "track_a_007": 0.7605,
+    "track_a_008": 0.7754,
+    "track_b_001": 0.661,
+    "track_b_002": 0.4758
+  },
+  "track_a_mean": 0.8654,
+  "track_b_mean": 0.5684,
+  "final_mean": 0.7911,
+  "per_sample_std": {
+    "track_a_001": 0.0224,
+    "track_a_002": 0.0132,
+    "track_a_003": 0.0148,
+    "track_a_004": 0.0168,
+    "track_a_005": 0.0136,
+    "track_a_006": 0.0155,
+    "track_a_007": 0.0328,
+    "track_a_008": 0.0124,
+    "track_b_001": 0.009,
+    "track_b_002": 0.0136
+  }
+}
